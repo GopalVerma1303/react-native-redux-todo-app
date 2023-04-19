@@ -16,11 +16,16 @@ import {
     MD3DarkTheme as PaperDarkTheme,
 } from 'react-native-paper';
 
+import { useSelector } from "react-redux";
+
 export default () => {
+
     const Tab = createBottomTabNavigator();
+    const themeReducer = useSelector(({ themeReducer }) => themeReducer);
+
     return (
-        <NavigationContainer theme={DarkTheme} >
-            <PaperProvider theme={PaperDarkTheme}>
+        <NavigationContainer theme={themeReducer.theme ? DarkTheme : DefaultTheme} >
+            <PaperProvider theme={themeReducer.theme ? PaperDarkTheme : PaperDefaultTheme}>
                 <Tab.Navigator screenOptions={({ route }) => ({
 
                     tabBarIcon: ({ focused, color, size }) => {

@@ -7,9 +7,9 @@ import {
 import * as themeActions from "../redux/actions/theme.action";
 import { useDispatch, useSelector } from "react-redux";
 
-const SettingScreen = ({ navigation }: any) => {
+const SettingScreen = ({ navigation }) => {
     const dispatch = useDispatch();
-    const themeReducer = useSelector(({ themeReducer }: any) => themeReducer);
+    const themeReducer = useSelector(({ themeReducer }) => themeReducer);
     return (
         <View style={{ flex: 1, paddingLeft: 25 }}>
             <List.Item

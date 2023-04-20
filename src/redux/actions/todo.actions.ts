@@ -1,8 +1,5 @@
 import { TodoItem } from '../../screens/Home'
-
-export const ADD_TODO = 'ADD_TODO';
-export const TOGGLE_TODO_COMPLETED = 'TOGGLE_TODO_COMPLETED';
-export const REMOVE_TODO = 'REMOVE_TODO';
+import { ADD_TODO, TOGGLE_TODO_COMPLETED, REMOVE_TODO } from '../constants';
 
 interface AddTodoAction {
     type: typeof ADD_TODO;

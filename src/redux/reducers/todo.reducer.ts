@@ -1,5 +1,6 @@
 import { TodoItem } from '../../screens/Home'
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO_COMPLETED, TodoActionTypes } from '../actions/todo.actions'
+import { ADD_TODO, TOGGLE_TODO_COMPLETED, REMOVE_TODO } from '../constants';
+import { TodoActionTypes } from '../actions/todo.actions'
 
 const initialState: TodoItem[] = []
 

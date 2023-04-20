@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
-import indexReducer from "./reducers/index.reducer";
+import rootReducer from "./reducers/index.reducer";
 const store = configureStore({
-    reducer: indexReducer,
+    reducer: rootReducer,
     middleware: [thunk]
 });
 export default store

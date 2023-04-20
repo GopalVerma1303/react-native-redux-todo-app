@@ -1,6 +1,7 @@
 import {
     DARK_THEME, LIGHT_THEME
 } from "../constants";
+
 export const ToggleDarkTheme = () => ({
     type: DARK_THEME,
 });

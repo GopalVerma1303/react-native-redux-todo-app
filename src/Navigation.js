@@ -21,11 +21,11 @@ import { useSelector } from "react-redux";
 export default () => {
 
     const Tab = createBottomTabNavigator();
-    const themeReducer = useSelector(({ themeReducer }) => themeReducer);
+    const themeReducer = useSelector(({ theme }) => theme.theme);
 
     return (
-        <NavigationContainer theme={themeReducer.theme ? DarkTheme : DefaultTheme} >
-            <PaperProvider theme={themeReducer.theme ? PaperDarkTheme : PaperDefaultTheme}>
+        <NavigationContainer theme={themeReducer ? DarkTheme : DefaultTheme} >
+            <PaperProvider theme={themeReducer ? PaperDarkTheme : PaperDefaultTheme}>
                 <Tab.Navigator screenOptions={({ route }) => ({
 
                     tabBarIcon: ({ focused, color, size }) => {

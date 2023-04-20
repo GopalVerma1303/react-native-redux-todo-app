@@ -1,57 +1,44 @@
 import * as React from 'react';
 import { StyleSheet, ScrollView, View, TouchableOpacity } from 'react-native';
-import { Button, Checkbox, IconButton, List, TextInput } from 'react-native-paper';
+import { Button, Checkbox, List, TextInput } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/reducers/index.reducer';
+import { addTodo, removeTodo, toggleTodoCompleted } from '../redux/actions/todo.actions';
 
-interface TodoItem {
+export interface TodoItem {
     id: number;
     text: string;
     completed: boolean;
 }
 
-const initialTodoList: TodoItem[] = [
-    { id: 1, text: 'Buy milk', completed: false },
-    { id: 2, text: 'Take out the trash', completed: true },
-    { id: 3, text: 'Do laundry', completed: false },
-    { id: 4, text: 'Walk the dog', completed: true },
-    { id: 5, text: 'Read a book', completed: false },
-    { id: 6, text: 'Go for a run', completed: false },
-    { id: 7, text: 'Clean the bathroom', completed: false },
-    { id: 8, text: 'Prepare dinner', completed: false },
-];
-
 export default function TodoScreen() {
-    const [todoList, setTodoList] = React.useState<TodoItem[]>(initialTodoList);
     const [textInputValue, setTextInputValue] = React.useState('');
+
+    const todoList = useSelector((state: RootState) => state.todo);
+
+    const dispatch = useDispatch();
 
     const handleAddTodo = () => {
         if (textInputValue.trim() === '') {
             return;
         }
 
-        const newTodo: TodoItem = {
-            id: Math.max(...todoList.map(todo => todo.id), 0) + 1,
+        dispatch(addTodo({
+            id: Math.max(...todoList.map((todo: TodoItem) => todo.id), 0) + 1,
             text: textInputValue.trim(),
             completed: false,
-        };
+        }));
 
-        setTodoList([...todoList, newTodo]);
         setTextInputValue('');
     };
 
     const handleToggleTodoCompleted = (todo: TodoItem) => {
-        const newTodoList = todoList.map(t =>
-            t.id === todo.id ? { ...t, completed: !t.completed } : t
-        );
-
-        setTodoList(newTodoList);
+        dispatch(toggleTodoCompleted(todo));
     };
 
     const handleRemoveTodo = (todo: TodoItem) => {
-        const newTodoList = todoList.filter(t => t.id !== todo.id);
-
-        setTodoList(newTodoList);
+        dispatch(removeTodo(todo));
     };
-
 
     return (
         <View style={styles.container}>
@@ -68,7 +55,7 @@ export default function TodoScreen() {
             <ScrollView style={styles.todoListSection}>
                 <List.Section>
                     <List.Subheader>TODOs:</List.Subheader>
-                    {todoList.map(todo => (
+                    {todoList.map((todo: TodoItem) => (
                         <List.Item
                             titleStyle={todo.completed ? styles.completedItem : null}
                             key={todo.id}

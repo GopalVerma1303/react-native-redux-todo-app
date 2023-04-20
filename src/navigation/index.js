@@ -3,8 +3,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import HomeScreen from './screens/Home';
-import SettingScreen from './screens/Setting';
+import HomeScreen from '../screens/Home';
+import SettingScreen from '../screens/Setting';
 
 import {
     DefaultTheme,
